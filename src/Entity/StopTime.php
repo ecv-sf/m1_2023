@@ -41,7 +41,8 @@ class StopTime implements ImportDatasInterface
     public static function createFromCsv(array $datas): self
     {
         return new self(
-            $datas['trip'], $datas['stop'],
+            $datas['trip'],
+            $datas['stop'],
             \DateTime::createFromFormat('H:i:s', $datas['arrival_time']),
             \DateTime::createFromFormat('H:i:s', $datas['departure_time']),
             $datas['stop_sequence']

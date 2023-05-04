@@ -38,7 +38,8 @@ class ImportGtfsCommand extends Command
         $this
             ->setDescription('Import données TAN')
             ->addArgument('name', InputArgument::REQUIRED, 'Nom de l\'entité à importer.')
-            ->setHelp('php bin/console app:import-gtfs Route && php bin/console app:import-gtfs Stop && php bin/console app:import-gtfs Trip && php bin/console app:import-gtfs StopTime --no-debug');
+            ->setHelp('php bin/console app:import-gtfs Route && php bin/console app:import-gtfs Stop && php bin/console app:import-gtfs Trip && php bin/console app:import-gtfs StopTime --no-debug')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -62,6 +63,7 @@ class ImportGtfsCommand extends Command
                 ++$i;
                 if (1 === $i) {
                     $keys = $data;
+
                     continue;
                 }
                 $data = array_combine($keys, $data);
@@ -93,11 +95,13 @@ class ImportGtfsCommand extends Command
                 $datas['parent'] = $this->em->find(Stop::class, $datas['parent_station']);
             }
         }
+
         if (Trip::class === $entityName) {
             $datas['route'] = $this->em->find(Route::class, $datas['route_id']);
         }
-        if (StopTime::class === $entityName) {
+        if (StopTime::class == $entityName) {
             $datas['trip'] = $this->em->find(Trip::class, $datas['trip_id']);
+
             $datas['stop'] = $this->em->find(Stop::class, $datas['stop_id']);
         }
 

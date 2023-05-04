@@ -9,8 +9,8 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Route>
  *
- * @method Route|null find($id, $lockMode = null, $lockVersion = null)
- * @method Route|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|Route find($id, $lockMode = null, $lockVersion = null)
+ * @method null|Route findOneBy(array $criteria, array $orderBy = null)
  * @method Route[]    findAll()
  * @method Route[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
